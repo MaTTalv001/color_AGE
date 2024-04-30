@@ -50,7 +50,7 @@ function CreatePostPage() {
             value={authorName}
             onChange={(e) => setAuthorName(e.target.value)}
             required
-            className="w-full px-3 py-2 border rounded-md"
+            className="w-full px-3 py-2 border rounded-md bg-base-300"
           />
         </div>
         <div className="mb-4">
@@ -60,7 +60,7 @@ function CreatePostPage() {
             value={content}
             onChange={(e) => setContent(e.target.value)}
             required
-            className="w-full px-3 py-2 border rounded-md"
+            className="w-full px-3 py-2 border rounded-md bg-base-300"
           />
         </div>
         <div className="mb-4">
@@ -74,7 +74,7 @@ function CreatePostPage() {
             value={era}
             onChange={(e) => setEra(e.target.value)}
             required
-            className="w-full px-3 py-2 border rounded-md"
+            className="w-full px-3 py-2 border rounded-md bg-base-300"
           >
             <option value="">選択してください</option>
             <option value="就学前">就学前</option>

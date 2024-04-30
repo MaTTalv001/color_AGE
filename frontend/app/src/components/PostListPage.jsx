@@ -146,7 +146,7 @@ const hexToRgb = (hex) => {
   return (
     <div className="container mx-auto px-4 mt-20">
       <h1 className="text-3xl font-bold text-center mb-5">投稿一覧</h1>
-      <p className="text-xl text-center mb-5">こどもの頃に思ったこと、あったこと</p>
+      <p className="text-xl text-center mb-5">こどもの頃に思ったこと、あったこと、あるあるなどを投稿しましょう</p>
       <p className="text-xl text-center mb-5">投稿に対して色でリアクションしましょう</p>
       <div className="flex justify-center mb-5">
         <Link to="/create" className="btn btn-wide btn-accent mx-2">新規投稿</Link>
@@ -196,7 +196,7 @@ const hexToRgb = (hex) => {
                 <p>{post.content}</p>
                 <p className="text-sm text-gray-500">Era: {post.era}</p>
                 <div className="mt-4">
-                  <p className="text-sm font-bold">みんなの色:</p>
+                  <p className="text-sm font-bold">みんなのリアクション:</p>
                   <div className="flex flex-wrap mt-2">
                     {post.reactions.map(reaction => (
                       <span
