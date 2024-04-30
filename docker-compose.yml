@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:14.7
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: myapp_development
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+
+  api:
+    build:
+      context: ./backend
+    command: bash -c "rm -f tmp/pids/server.pid && bundle check || bundle install && rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - ./backend:/api
+    ports:
+      - '3001:3000'
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+
+  # ここから追記
+  front:
+    build: ./frontend/
+    volumes:
+      - ./frontend/app:/front
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    command: npm start
+
+volumes:
+  postgres_data:
