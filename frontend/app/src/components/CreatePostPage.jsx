@@ -19,7 +19,7 @@ function CreatePostPage() {
       color_name: "Custom Color",
       era: era
     };
-    fetch('http://localhost:3001/posts', {
+    fetch(`${process.env.REACT_APP_API_URL}/posts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

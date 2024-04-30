@@ -21,7 +21,7 @@ function PostListPage() {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/posts?page=${currentPage}`);
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/posts?page=${currentPage}`);
       setPosts(response.data);
       setTotalPages(response.headers['total-pages']);
       setLoading(false);
@@ -45,7 +45,7 @@ function PostListPage() {
   };
 
   useEffect(() => {
-    fetch('http://localhost:3001/posts')
+    fetch(`${process.env.REACT_APP_API_URL}/posts`)
       .then(response => response.json())
       .then(data => {
         setPosts(data);
@@ -86,7 +86,7 @@ function PostListPage() {
         color_code: selectedColor,
       },
     };
-    fetch(`http://localhost:3001/posts/${currentPostId}/reactions`, {
+    fetch(`${process.env.REACT_APP_API_URL}/posts/${currentPostId}/reactions`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ function PostListPage() {
   // ...
 
   const searchByColor = () => {
-    fetch(`http://localhost:3001/posts/search_by_color?color=${selectedColor.slice(1)}`)
+    fetch(`${process.env.REACT_APP_API_URL}/posts/search_by_color?color=${selectedColor.slice(1)}`)
       .then(response => response.json())
       .then(data => {
         setSearchResults(data);
