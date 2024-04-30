@@ -56,7 +56,7 @@ function PostListPage() {
         setError(error.message);
         setLoading(false);
       });
-  }, []);
+  }, [posts]);
 
   const openModal = (postId) => {
     setCurrentPostId(postId);
