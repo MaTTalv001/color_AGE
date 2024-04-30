@@ -4,8 +4,12 @@ class PostsController < ApplicationController
   
     # GET /posts
     def index
-        @posts = Post.includes(:reactions).page(params[:page]).per(10)
-        render json: @posts.as_json(include: :reactions)
+        @posts = Post.includes(:reactions).order(created_at: :desc).page(params[:page]).per(10)
+        total_pages = @posts.total_pages
+        render json: {
+          posts: @posts.as_json(include: :reactions),
+          total_pages: total_pages
+        }
       end
   
     # GET /posts/1
@@ -59,7 +63,7 @@ class PostsController < ApplicationController
       end
   
       def post_params
-        params.require(:post).permit(:author_name, :content, :color_code, :color_name)
+        params.require(:post).permit(:author_name, :content, :color_code, :color_name, :era)
       end
   end
   
