@@ -49,9 +49,9 @@ class PostsController < ApplicationController
 
       
         if @posts.empty?
-          logger.info("No posts found for color: #{target_color}")
+          logger.info("データがありません: #{target_color}")
         else
-          logger.info("Found #{@posts.count} posts for color: #{target_color}")
+          logger.info(" #{@posts.count}件の投稿があります: #{target_color}")
         end
       
         render json: @posts.as_json(include: :reactions)

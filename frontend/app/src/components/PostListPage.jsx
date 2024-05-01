@@ -31,7 +31,7 @@ function PostListPage() {
       setTotalPages(response.data.total_pages);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching posts:', error);
+      console.error('投稿を取得できませんでした:', error);
       setError(error.message);
       setLoading(false);
     }
@@ -92,10 +92,10 @@ function PostListPage() {
         return response.json();
       })
       .then((data) => {
-        console.log('Reaction submitted:', data);
+
         closeModal();
       })
-      .catch((error) => console.error('Error submitting reaction:', error));
+      .catch((error) => console.error('リアクションの登録に失敗しました:', error));
   };
 
   const searchByColor = () => {
@@ -106,7 +106,7 @@ function PostListPage() {
         closeSearchModal();
       })
       .catch(error => {
-        console.error('Error searching posts:', error);
+        console.error('検索に失敗しました:', error);
       });
   };
 
@@ -125,25 +125,25 @@ function PostListPage() {
     window.open(twitterUrl, "_blank");
   };
 
-  // RGB色空間での色の差を計算するヘルパー関数
-  const colorDifference = (color1, color2) => {
-    const rgb1 = hexToRgb(color1);
-    const rgb2 = hexToRgb(color2);
+  // // RGB色空間での色の差を計算するヘルパー関数
+  // const colorDifference = (color1, color2) => {
+  //   const rgb1 = hexToRgb(color1);
+  //   const rgb2 = hexToRgb(color2);
 
-    const rDiff = Math.abs(rgb1.r - rgb2.r);
-    const gDiff = Math.abs(rgb1.g - rgb2.g);
-    const bDiff = Math.abs(rgb1.b - rgb2.b);
+  //   const rDiff = Math.abs(rgb1.r - rgb2.r);
+  //   const gDiff = Math.abs(rgb1.g - rgb2.g);
+  //   const bDiff = Math.abs(rgb1.b - rgb2.b);
 
-    return rDiff + gDiff + bDiff;
-  };
+  //   return rDiff + gDiff + bDiff;
+  // };
 
-  // 16進数カラーコードをRGB色空間に変換するヘルパー関数
-  const hexToRgb = (hex) => {
-    const r = parseInt(hex.substring(1, 3), 16);
-    const g = parseInt(hex.substring(3, 5), 16);
-    const b = parseInt(hex.substring(5, 7), 16);
-    return { r, g, b };
-  };
+  // // 16進数カラーコードをRGB色空間に変換するヘルパー関数
+  // const hexToRgb = (hex) => {
+  //   const r = parseInt(hex.substring(1, 3), 16);
+  //   const g = parseInt(hex.substring(3, 5), 16);
+  //   const b = parseInt(hex.substring(5, 7), 16);
+  //   return { r, g, b };
+  // };
 
   if (loading) return <div className="text-center mt-10"><p>Loading...</p></div>;
   if (error) return <div className="text-center mt-10"><p>Error loading posts: {error}</p></div>;
