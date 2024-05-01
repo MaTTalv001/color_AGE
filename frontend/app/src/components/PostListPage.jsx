@@ -204,7 +204,7 @@ function PostListPage() {
                 <h2 className="card-title ml-2">{post.author_name}</h2>
               </div>
               <p>{post.content}</p>
-              <p className="text-sm text-gray-500">Era: {post.era}</p>
+              <p className="text-sm text-gray-500">年代: {post.era}</p>
               <div className="mt-4">
                 <p className="text-sm font-bold">みんなのリアクション:</p>
                 <div className="flex flex-wrap mt-2">
