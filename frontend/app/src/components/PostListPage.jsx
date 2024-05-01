@@ -21,7 +21,7 @@ function PostListPage() {
 
   useEffect(() => {
     fetchPosts();
-  }, [posts]);
+  }, []);
 
  
   const fetchPosts = async () => {
