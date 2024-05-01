@@ -23,7 +23,7 @@ function PostListPage() {
     fetchPosts();
   }, [posts]);
 
-
+ 
   const fetchPosts = async () => {
     try {
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/posts?page=${currentPage}`);
@@ -92,7 +92,32 @@ function PostListPage() {
         return response.json();
       })
       .then((data) => {
-
+        // リアクションの登録が成功した後の処理
+        if (searchResults.length > 0) {
+          // 検索結果が表示されている場合は、searchResultsを更新
+          const updatedSearchResults = searchResults.map((post) => {
+            if (post.id === currentPostId) {
+              return {
+                ...post,
+                reactions: [...post.reactions, data],
+              };
+            }
+            return post;
+          });
+          setSearchResults(updatedSearchResults);
+        } else {
+          // 検索結果が表示されていない場合は、postsを更新
+          const updatedPosts = posts.map((post) => {
+            if (post.id === currentPostId) {
+              return {
+                ...post,
+                reactions: [...post.reactions, data],
+              };
+            }
+            return post;
+          });
+          setPosts(updatedPosts);
+        }
         closeModal();
       })
       .catch((error) => console.error('リアクションの登録に失敗しました:', error));
@@ -103,6 +128,7 @@ function PostListPage() {
       .then(response => response.json())
       .then(data => {
         setSearchResults(data);
+        setPosts(data);
         closeSearchModal();
       })
       .catch(error => {
